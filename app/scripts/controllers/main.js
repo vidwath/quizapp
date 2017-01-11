@@ -8,10 +8,13 @@
  * Controller of the quizappApp
  */
 angular.module('quizappApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+.controller('MainCtrl', function ($scope,mainService) {
+	mainService.getAbout()
+	.then(function(success) {
+		$scope.main = success;
+		console.log($scope.main);
+	}, function(error) {
+		$scope.error = error;
+		console.log($scope.error);
+	});
+});
